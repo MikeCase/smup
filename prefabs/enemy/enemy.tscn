@@ -1,0 +1,48 @@
+[gd_scene load_steps=10 format=3 uid="uid://irb5a4a8x5x8"]
+
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_mc32j"]
+[ext_resource type="PackedScene" uid="uid://dk8ywervymfdn" path="res://prefabs/enemy/hitParticles.tscn" id="2_toi7n"]
+[ext_resource type="PackedScene" uid="uid://crawwsn2r5sn0" path="res://prefabs/enemy/DeathParticles.tscn" id="3_dquu2"]
+[ext_resource type="PackedScene" uid="uid://kx4ypjvh8ksx" path="res://prefabs/dropItems/CrystalDrop.tscn" id="4_jmepp"]
+[ext_resource type="PackedScene" uid="uid://dtq8js5lqy3dy" path="res://prefabs/dropItems/HealthDrop.tscn" id="4_u2j77"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qx5f0"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_v8w5d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c7gfr"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_pkkx1"]
+font_color = Color(0, 0, 0, 1)
+shadow_color = Color(0, 0, 0, 0.454902)
+
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_mc32j")
+hitParticle = ExtResource("2_toi7n")
+deathParticle = ExtResource("3_dquu2")
+dropItem = Array[PackedScene]([ExtResource("4_jmepp"), ExtResource("4_u2j77")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.999997, 0.96)
+shape = SubResource("RectangleShape2D_qx5f0")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+scale = Vector2(19.88, 19.88)
+mesh = SubResource("BoxMesh_v8w5d")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(1.04, 1.04)
+shape = SubResource("RectangleShape2D_c7gfr")
+
+[node name="HealthLabel" type="Label" parent="."]
+offset_left = 20.0
+offset_top = 12.0
+offset_right = 60.0
+offset_bottom = 35.0
+rotation = -3.14159
+label_settings = SubResource("LabelSettings_pkkx1")
+horizontal_alignment = 1
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

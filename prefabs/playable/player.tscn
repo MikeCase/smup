@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://cly5vvl8mjmgp"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_hos1m"]
+[ext_resource type="PackedScene" uid="uid://wcswonn1n103" path="res://prefabs/weapons/weapon.tscn" id="1_otxkm"]
+[ext_resource type="PackedScene" uid="uid://dtju0cq8ynmln" path="res://prefabs/ammo/ammo.tscn" id="2_dpr6q"]
+[ext_resource type="PackedScene" uid="uid://bq08q0u4ktcxl" path="res://prefabs/playable/muzzle_flash.tscn" id="4_x6pfc"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_cchii"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ouxku"]
+radius = 15.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v3kjj"]
+radius = 17.0294
+
+[node name="Player" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_hos1m")
+attack = 5.0
+ammoPrefab = ExtResource("2_dpr6q")
+
+[node name="Body" type="MeshInstance2D" parent="."]
+self_modulate = Color(0.552956, 0.552956, 0.552956, 1)
+position = Vector2(4.17233e-07, 5.72205e-06)
+scale = Vector2(30, 30)
+mesh = SubResource("SphereMesh_cchii")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ouxku")
+
+[node name="weapon" parent="." instance=ExtResource("1_otxkm")]
+position = Vector2(23, 6.82121e-13)
+scale = Vector2(2.846, 11.577)
+
+[node name="MuzzleFlash" parent="weapon/FirePoint" index="0" instance=ExtResource("4_x6pfc")]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_v3kjj")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+
+[editable path="weapon"]

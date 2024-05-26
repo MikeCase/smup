@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://cytfrj0r052fi"]
+
+[ext_resource type="Script" path="res://scripts/EnemySpawn.gd" id="1_q1h6a"]
+
+[sub_resource type="Curve2D" id="Curve2D_yfsti"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1151, -2, 0, 0, 0, 0, 1153, 647, 0, 0, 0, 0, 0, 651, 0, 0, 0, 0, -1, -2, 0, 0, 0, 0, 1151, -2)
+}
+point_count = 5
+
+[node name="EnemySpawn" type="Node2D"]
+script = ExtResource("1_q1h6a")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="spawnPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_yfsti")
+
+[node name="spawnLocation" type="PathFollow2D" parent="spawnPath"]
+position = Vector2(1151, -2)
+rotation = 1.56771
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

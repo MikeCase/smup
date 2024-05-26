@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://ei0rqtxyoepm"]
+
+[ext_resource type="PackedScene" uid="uid://cly5vvl8mjmgp" path="res://prefabs/playable/player.tscn" id="1_dh8t3"]
+[ext_resource type="PackedScene" uid="uid://cytfrj0r052fi" path="res://prefabs/enemy/EnemySpawn.tscn" id="2_iygvi"]
+[ext_resource type="PackedScene" uid="uid://irb5a4a8x5x8" path="res://prefabs/enemy/enemy.tscn" id="3_pig0h"]
+[ext_resource type="PackedScene" uid="uid://bude0lanui3af" path="res://scenes/UI.tscn" id="4_bk28q"]
+
+[sub_resource type="Environment" id="Environment_7nt1p"]
+background_mode = 3
+tonemap_mode = 3
+glow_enabled = true
+glow_levels/1 = 16.0
+glow_levels/2 = 16.0
+glow_levels/3 = 16.0
+glow_levels/4 = 16.0
+glow_levels/5 = 16.0
+glow_levels/6 = 16.0
+glow_levels/7 = 16.0
+glow_intensity = 4.19
+glow_strength = 1.15
+glow_blend_mode = 1
+glow_hdr_scale = 0.8
+
+[node name="World" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(38, 23)
+color = Color(0.0627451, 0.0823529, 0.0823529, 1)
+
+[node name="UI" parent="." instance=ExtResource("4_bk28q")]
+
+[node name="Player" parent="." instance=ExtResource("1_dh8t3")]
+position = Vector2(566, 347)
+
+[node name="EnemySpawn" parent="." instance=ExtResource("2_iygvi")]
+position = Vector2(2, 3)
+enemyScene = ExtResource("3_pig0h")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_7nt1p")

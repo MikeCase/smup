@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://kx4ypjvh8ksx"]
+
+[ext_resource type="Texture2D" uid="uid://cnd8yjy802na" path="res://sprites/11.png" id="1_sun8q"]
+[ext_resource type="Script" path="res://scripts/CrystalDrop.gd" id="1_u3lar"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2l73x"]
+radius = 13.0384
+
+[node name="CrystalDrop" type="Node2D"]
+script = ExtResource("1_u3lar")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("1_sun8q")
+offset = Vector2(-3.82, 0)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_2l73x")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://wcswonn1n103"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_d1t6v"]
+
+[node name="weapon" type="MeshInstance2D"]
+position = Vector2(0, -1.90735e-06)
+rotation = 1.5708
+scale = Vector2(5, 39)
+mesh = SubResource("BoxMesh_d1t6v")
+
+[node name="FirePoint" type="Node2D" parent="."]
+position = Vector2(2.06624e-07, -0.512821)

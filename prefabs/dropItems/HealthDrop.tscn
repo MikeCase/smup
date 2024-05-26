@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://dtq8js5lqy3dy"]
+
+[ext_resource type="Script" path="res://scripts/HealthDrop.gd" id="1_pqiyp"]
+[ext_resource type="Texture2D" uid="uid://bxfxtlg07agtc" path="res://sprites/03.png" id="2_k6etd"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eakq6"]
+radius = 14.3178
+
+[node name="HealthDrop" type="Node2D"]
+script = ExtResource("1_pqiyp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("2_k6etd")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1, 0)
+shape = SubResource("CircleShape2D_eakq6")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
