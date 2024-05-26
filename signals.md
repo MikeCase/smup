@@ -13,7 +13,7 @@ func _on_died():
 
 ```
 
-Now you have to connect your signal to it's slot. 
+Now you have to connect your signal to it's slot.
 
 ```python
 
