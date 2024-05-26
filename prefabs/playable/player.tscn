@@ -25,6 +25,9 @@ position = Vector2(4.17233e-07, 5.72205e-06)
 scale = Vector2(30, 30)
 mesh = SubResource("SphereMesh_cchii")
 
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ouxku")
 
